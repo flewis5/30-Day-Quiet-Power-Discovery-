@@ -1,0 +1,313 @@
+
+<h2 class="sr-only">The Batman Protocol: A 30-day discipline mastery blueprint covering training, mental fortitude, social calibration, and bodyframe across four progressive levels.</h2>
+<style>
+:root{--app-scale:1;--text-scale:1;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.protocol-shell{transform:scale(var(--app-scale));transform-origin:top center;transition:transform .18s ease;font-size:calc(16px * var(--text-scale));}
+.mobile-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 1rem;padding:12px 14px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-secondary);}
+.mobile-tools__group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mobile-tools__label{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.08em;}
+.mobile-btn{cursor:pointer;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:12px;background:var(--color-background-primary);color:var(--color-text-primary);line-height:1;}
+.mobile-btn.active{background:#FAC775;color:#412402;border-color:#BA7517;font-weight:500;}
+.tab{cursor:pointer;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:7px 14px;font-size:12px;background:transparent;color:var(--color-text-secondary);transition:all .15s;text-align:center;line-height:1.3;}
+.tab:hover{background:var(--color-background-secondary);border-color:var(--color-border-secondary);}
+.tab.on{background:#FAC775;color:#412402;border-color:#BA7517;font-weight:500;}
+.dcard{cursor:pointer;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 8px;transition:border-color .15s;background:var(--color-background-primary);text-align:center;min-width:0;}
+.dcard:hover{border-color:var(--color-border-primary);}
+.dcard.sel{border-color:#BA7517;border-width:1.5px;}
+.pill{display:inline-block;font-size:10px;padding:2px 7px;border-radius:100px;background:var(--color-background-secondary);color:var(--color-text-secondary);}
+.pillar{border-left:2px solid var(--color-border-secondary);padding-left:12px;margin-bottom:12px;}
+.fw-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.fw-row:last-child{border:none;}
+details>summary{cursor:pointer;list-style:none;user-select:none;}
+details>summary::-webkit-details-marker{display:none;}
+@media (max-width: 768px){
+  .protocol-shell{width:100%;}
+  .mobile-tools{position:sticky;top:8px;z-index:20;}
+  #day-detail [data-detail-grid]{grid-template-columns:1fr !important;}
+  #day-detail [data-hero-title]{font-size:18px !important;}
+  #day-detail [data-hero-quote]{font-size:11px !important;}
+}
+</style>
+
+<div class="mobile-tools">
+  <div class="mobile-tools__group">
+    <span class="mobile-tools__label">Page width</span>
+    <button type="button" class="mobile-btn" data-scale="0.92" onclick="setScale(0.92)">Fit</button>
+    <button type="button" class="mobile-btn active" data-scale="1" onclick="setScale(1)" id="scale-default">Normal</button>
+    <button type="button" class="mobile-btn" data-scale="1.08" onclick="setScale(1.08)">Wide</button>
+  </div>
+  <div class="mobile-tools__group">
+    <span class="mobile-tools__label">Text size</span>
+    <button type="button" class="mobile-btn" data-text-scale="0.95" onclick="setTextScale(0.95)">A-</button>
+    <button type="button" class="mobile-btn active" data-text-scale="1" onclick="setTextScale(1)" id="text-default">A</button>
+    <button type="button" class="mobile-btn" data-text-scale="1.12" onclick="setTextScale(1.12)">A+</button>
+    <button type="button" class="mobile-btn" data-text-scale="1.25" onclick="setTextScale(1.25)">A++</button>
+  </div>
+  <div class="mobile-tools__group">
+    <span class="mobile-tools__label" id="mobile-status">Responsive layout enabled</span>
+  </div>
+</div>
+
+<div class="protocol-shell" id="protocol-shell" style="padding:0.75rem 0 2rem;">
+
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.25rem;">
+  <div style="position:relative;height:180px;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1000&q=75&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.35);" loading="eager">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;">
+      <p style="font-size:10px;letter-spacing:.25em;color:#FAC775;margin:0 0 8px;text-transform:uppercase;font-weight:500;">30-Day Discipline Mastery Blueprint</p>
+      <h1 style="font-size:28px;font-weight:500;color:#fff;margin:0 0 6px;letter-spacing:-.01em;">The Batman Protocol</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,0.65);margin:0;font-style:italic;">"It is not who I am underneath, but what I do that defines me."</p>
+    </div>
+  </div>
+  <div style="padding:10px 1.25rem;background:var(--color-background-secondary);display:flex;gap:2rem;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+      <div><p style="font-size:10px;color:var(--color-text-secondary);margin:0 0 1px;text-transform:uppercase;letter-spacing:.1em;">Duration</p><p style="font-size:16px;font-weight:500;margin:0;">30 Days</p></div>
+      <div><p style="font-size:10px;color:var(--color-text-secondary);margin:0 0 1px;text-transform:uppercase;letter-spacing:.1em;">Levels</p><p style="font-size:16px;font-weight:500;margin:0;">4 Stages</p></div>
+      <div><p style="font-size:10px;color:var(--color-text-secondary);margin:0 0 1px;text-transform:uppercase;letter-spacing:.1em;">Pillars</p><p style="font-size:16px;font-weight:500;margin:0;">5 Daily</p></div>
+    </div>
+    <div style="text-align:right;"><p style="font-size:10px;color:var(--color-text-secondary);margin:0 0 1px;text-transform:uppercase;letter-spacing:.1em;">Completed</p><p style="font-size:16px;font-weight:500;margin:0;" id="prog-count">0 / 30 days</p></div>
+  </div>
+</div>
+
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.25rem;">
+  <details>
+    <summary style="padding:11px 1.25rem;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <span style="font-size:13px;font-weight:500;">The Batman Protocol: daily time blocks</span>
+      <span style="font-size:11px;color:var(--color-text-secondary);">Expand</span>
+    </summary>
+    <div style="padding:0.75rem 1.25rem;" id="fw-body"></div>
+  </details>
+</div>
+
+<div id="level-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;"></div>
+<div id="level-info" style="margin-bottom:1rem;padding:12px 1rem;background:var(--color-background-secondary);border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);"></div>
+<div id="day-grid" style="display:grid;gap:8px;margin-bottom:1.25rem;"></div>
+<div id="day-detail" style="display:none;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.5rem;"></div>
+
+</div>
+
+<script>
+const FW=[
+  {time:"05:00",name:"The Cave",desc:"Morning silence and intention. No phone. Set the tone for what follows."},
+  {time:"05:30",name:"The Forge",desc:"Physical training: strength, conditioning, or structured mobility work."},
+  {time:"07:00",name:"The Suit",desc:"Cold shower, full grooming protocol, deliberate and unhurried presentation."},
+  {time:"08:00",name:"The Mission",desc:"Deep work block one: highest priority task. Phone on silent, out of reach."},
+  {time:"12:30",name:"The Debrief",desc:"Midday review, a proper meal, a brief walk. No decisions during this window."},
+  {time:"13:30",name:"The Arsenal",desc:"Deep work block two: skill building, secondary project, or tactical learning."},
+  {time:"17:30",name:"The Lab",desc:"30 pages of non-fiction, a social skill drill, or a study session."},
+  {time:"19:00",name:"The Cool-down",desc:"Light movement, a reflective walk, no screen, no agenda."},
+  {time:"21:00",name:"The Analysis",desc:"Evening journal, tomorrow planned in full, week reviewed on Sundays."},
+  {time:"22:00",name:"Lights Out",desc:"No screens. Sleep protocol begins. Seven to eight hours is non-negotiable."}
+];
+
+const LEVELS=[
+  {id:1,name:"The Orphan",days:"Days 1-7",theme:"Identity Forging",color:"#BA7517",desc:"Strip back everything circumstance made you. This stage establishes the deliberate identity you are choosing to inhabit from this point forward."},
+  {id:2,name:"The Student",days:"Days 8-14",theme:"Training Mastery",color:"#3B6D11",desc:"Bruce Wayne spent years under masters before becoming Batman. This stage builds the physical, mental, and social systems that make discipline structural rather than motivational."},
+  {id:3,name:"The Vigilante",days:"Days 15-21",theme:"Systems and Presence",color:"#185FA5",desc:"Your habits are beginning to automate. Now you refine the way you occupy space: your communication, your physical authority, and the impression you leave in every room."},
+  {id:4,name:"The Dark Knight",days:"Days 22-30",theme:"Integration and Legacy",color:"#7F77DD",desc:"All pillars operating simultaneously, without external accountability or motivational support. This is who you are now. The 30-day course was the ignition, not the destination."}
+];
+
+const DAYS=[
+  {day:1,level:1,title:"The Architect's Decision",focus:"Identity",badge:"Foundation",img:"https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=900&q=75&auto=format&fit=crop",quote:"You did not choose who you were. You are choosing who you become.",training:"Baseline physical inventory. Push-ups to absolute failure, squats to 50, plank to failure, one mile timed. Record every number without interpreting them. These are coordinates on a map, not a verdict.",mental:"Write ten present-tense declarations of the man you are becoming. Not goals. Commitments. 'I am a man who finishes what he starts even when the conditions are against him.' Commit them to memory before sleep.",social:"Deliver one precise, honest observation to someone today. Not criticism disguised as concern, not vague encouragement. A direct and specific truth that most people would leave unsaid.",bodyframe:"Stand in front of a full-length mirror for five uninterrupted minutes. Study your posture, your jaw, the quality of your eye contact with yourself. Note exactly where you shrink.",evening:"Write a third-person description of the man you are committing to. Leave the page open on your desk. He is already watching."},
+  {day:2,level:1,title:"The Cave Setup",focus:"Environment Design",badge:"Foundation",img:"https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=900&q=75&auto=format&fit=crop",quote:"Your environment is either your greatest ally or your slowest poison.",training:"20-minute deliberate walk with no audio. Observe your pace, your shoulder position, the path your eyes instinctively choose. Walking reveals posture habits you cannot see standing still.",mental:"Clear every flat surface in your primary living and working space. Clutter is not aesthetic, it is a collection of deferred decisions. Remove every object that does not serve a clear function.",social:"Run a silence audit today. Count how many sentences you spoke that added no value to the conversation. The opening number is always higher than people expect.",bodyframe:"Practice your neutral resting expression in the mirror for three minutes. Not performed calm. Genuine composure: jaw slightly relaxed, eyes level, no upward tension in the forehead.",evening:"Set up your physical planning station: notebook, single pen, one light source. Lay out tomorrow's schedule before you close your eyes."},
+  {day:3,level:1,title:"The Non-Negotiables",focus:"Core Laws",badge:"Foundation",img:"https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?w=900&q=75&auto=format&fit=crop",quote:"Personal laws are more durable than external rules because you wrote them under no one's authority.",training:"Three sets of 20 push-ups, 20 bodyweight squats, and a 60-second plank. No music. Track your rest intervals between sets. Breathe through the nose on the descent.",mental:"Write your three personal laws: absolute commitments that apply regardless of circumstance, energy level, or inconvenience. Vague laws are useless. 'I train every morning before I check any device' is a law. 'I try to exercise' is a preference.",social:"Say no to one request today without an apology, an explanation, or a follow-up offer. A no delivered with calm confidence and no softening qualifiers is a complete sentence.",bodyframe:"Walk 200 consecutive steps with deliberate mechanics: heel-to-toe landing, shoulders pressed back and down, chin parallel to the floor, arms relaxed and unhurried.",evening:"Record a voice memo of yourself reading your three laws aloud. Play it back. Listen for whether you believe yourself when you say them."},
+  {day:4,level:1,title:"The Silence Protocol",focus:"Mental Fortitude",badge:"Foundation",img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=75&auto=format&fit=crop",quote:"The man who can sit in silence without discomfort cannot be rattled by noise.",training:"30 minutes of any physical movement with zero audio. No playlist, no podcast, no ambient content running in the background. Just you and the direct sensation of physical effort.",mental:"60 minutes of intentional, unmanaged silence. No device, no background content, nothing to redirect what surfaces. Sit with whatever thoughts arrive. This is not meditation. It is inventory.",social:"In every interaction today, ask one question and then listen to the entire answer without redirecting toward your own experience. Observe how rarely this happens in normal conversation.",bodyframe:"Eat one complete meal seated upright, phone in another room, no reading material. Focus only on the food and the quality of your posture throughout.",evening:"Journal this single question: what did the silence force you to confront that noise was helping you avoid?"},
+  {day:5,level:1,title:"The Physical Baseline",focus:"Body Inventory",badge:"Assessment",img:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=75&auto=format&fit=crop",quote:"What you measure honestly, you can build deliberately.",training:"Full baseline test: push-ups to failure, pull-ups or inverted rows to failure, 50 bodyweight squats, one mile at your fastest sustainable pace. Time and document everything.",mental:"Accept these numbers as data without narrative. Elite athletes have a Day 1. What you record today is not a reflection of your potential, it is the starting coordinate for the entire build.",social:"Compliment one person with surgical specificity: not 'great work' but 'the way you handled that particular situation showed clear thinking under pressure.' Precision is the difference.",bodyframe:"Film yourself completing 10 bodyweight squats from a side angle. Observe your posture at the bottom of the movement: where does the chest fall? Where does the knee track?",evening:"Store all baseline numbers in a permanent record. These are your Day 1 coordinates. Every session forward is measured against what you recorded tonight."},
+  {day:6,level:1,title:"The Social Audit",focus:"Circle Intelligence",badge:"Assessment",img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=75&auto=format&fit=crop",quote:"Your average is not the number on a scale. It is the people you give consistent access to your time.",training:"45-minute compound training session: press, pull, and hinge movements only. No isolation work today. Compound movements train the system as a whole, not individual components.",mental:"List every person you interacted with this week. Beside each name, write sharpening or dulling. Honest assessment of which direction each person consistently moves you.",social:"Take one conversation beneath the surface today. The entry point: 'What are you actually working toward right now?' Then listen without steering the conversation toward your own situation.",bodyframe:"Calibrate your handshake: firm grip, palm dry, a single deliberate pump lasting two full seconds, direct eye contact held throughout. Practice the mechanics on a solid surface first if needed.",evening:"Based on your audit, decide: who gets more of your time going forward? Who gets less? Begin implementing this quietly, without announcement or justification."},
+  {day:7,level:1,title:"The First Review",focus:"Accountability",badge:"Review",img:"https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900&q=75&auto=format&fit=crop",quote:"Self-accountability is the hardest discipline of all. No external force can impose it.",training:"Active recovery: a 20-minute walk followed by 15 minutes of full-body stretching. No load. Let the body absorb six days of deliberate work.",mental:"Score Days 1 through 6 across five categories: sleep consistency, training completion, focus quality, social depth, and physical presence. Use a scale of 1 to 10. Every low score is a message.",social:"Contact the one person you have been putting off speaking to. No optimal timing exists for this kind of conversation. Initiate it.",bodyframe:"Wear your sharpest, most precisely fitting outfit today, not to impress anyone externally, but to observe how your posture adjusts when you respect your own appearance.",evening:"Write three answers: what broke this week? What ran without effort? What changes in Week 2?"},
+
+  {day:8,level:2,title:"The Mind Diet",focus:"Input Control",badge:"Mental",img:"https://images.unsplash.com/photo-1512485800893-b08ec1ea59b1?w=900&q=75&auto=format&fit=crop",quote:"What you consume without intention gradually begins to consume you.",training:"30-minute zone 2 cardio at a pace where you could hold a broken conversation. This trains the aerobic base that all high-performance output depends on.",mental:"Delete or mute every social media source that does not directly teach or improve you. Not reduce. Remove. If your information diet were a food diet, grade it A through F right now.",social:"Replace one scrolling session today with a real conversation of equivalent length. The quality contrast between them will be immediately apparent.",bodyframe:"Notice your physical posture every time you pick up a phone today. Chin down, shoulders rolled forward, chest collapsed. That posture is the precise opposite of physical authority. Correct it each time.",evening:"List everything you consumed today: media, food, conversation. Assign each one a grade. The average is your current cognitive environment quality."},
+  {day:9,level:2,title:"The Training Blueprint",focus:"Physical Architecture",badge:"Training",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=75&auto=format&fit=crop",quote:"A man without a structured training plan is training his inconsistency, not his body.",training:"Design your weekly training split and execute Day 1 of it today: upper body push. Chest, shoulders, and triceps. Track every set, rep, and load. These are your benchmark numbers.",mental:"Study one training principle you have been guessing at: progressive overload, RPE-based loading, periodization structure, or recovery timelines. Apply it to your plan in writing.",social:"Send your written training split to one person today. The act of saying a plan out loud creates accountability that willpower alone does not.",bodyframe:"Practice controlled training breathwork: inhale through the nose on the descent, exhale through the mouth on the concentric effort. Breath is the rhythm that separates composed strength from reactive effort.",evening:"Write your complete four-week training plan with specific exercises, set counts, rep targets, and load benchmarks. Vague plans produce vague adaptations."},
+  {day:10,level:2,title:"The Art of Stillness",focus:"Internal Mastery",badge:"Mental",img:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=900&q=75&auto=format&fit=crop",quote:"Speed is the enemy of presence. Deliberate slowness is the entry point to real authority.",training:"Upper body pull: back, biceps, and rear deltoids. Use a 3-second controlled eccentric on every single rep. Tempo training builds neurological connection, not just tissue mass.",mental:"First formal breathwork session: 10 minutes of box breathing. Four counts in through the nose, four counts hold, four counts out, four counts hold. Return to the count each time thought interrupts.",social:"Allow every person to finish their sentence completely before you begin formulating your response. The pause that follows is not hesitation. It signals that you heard them.",bodyframe:"Record yourself speaking for two unscripted minutes on any topic. Watch the full playback: assess pace, filler words, eye movement, and whether your posture communicates certainty or apology.",evening:"What is the stillness preventing you from rushing past? Write the honest answer."},
+  {day:11,level:2,title:"The Bodyframe Protocol",focus:"Physical Presence",badge:"Presence",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=75&auto=format&fit=crop",quote:"At 6ft 5, your frame is already a statement. Make sure your posture agrees with it.",training:"Full legs session: barbell or goblet squats, Romanian deadlifts, walking lunges, and calf raises. Full depth on every rep. Film a working set of squats from a side angle.",mental:"Study how tall men of genuine influence carry themselves. Not the ones who shrink to seem approachable. The ones who use measured movement and controlled stillness as their primary presence tool.",social:"Enter every room today as if you belong there without qualification. No scanning for approval, no physically shrinking to fit through a space more quietly than your frame requires.",bodyframe:"The four anchors of physical authority: chin parallel to the floor, shoulders back and pressed down, chest lifted slightly, all movement deliberate and completely unhurried.",evening:"Film yourself walking toward and away from the camera. Does your body language communicate arrival or does it communicate apology?"},
+  {day:12,level:2,title:"The Social Calibration",focus:"Conversational Intelligence",badge:"Social",img:"https://images.unsplash.com/photo-1559526324-593bc073d938?w=900&q=75&auto=format&fit=crop",quote:"Magnetism is not a personality trait. It is the result of making someone feel genuinely considered.",training:"Active recovery: 30 minutes of yoga, full-body mobility work, or a structured stretch sequence. Focus extra time on hip flexors, thoracic spine rotation, and shoulder overhead mobility.",mental:"Identify one person you find genuinely compelling in conversation. Write down the specific behaviors, not the general vibe, that produce that effect in the people around them.",social:"Initiate three distinct conversations today, each opening with a direct observation rather than a standard greeting. 'I noticed...' or 'I have been thinking about...' opens real conversation rather than performing it.",bodyframe:"Practice holding eye contact for four seconds before breaking naturally. Not a fixed stare. A signal that you are present, unhurried, and fully engaged with the person in front of you.",evening:"Review each conversation honestly: where did you withdraw? Where did you lead? Where did you fill a silence you should have held?"},
+  {day:13,level:2,title:"The Skill Stack",focus:"Compounding Knowledge",badge:"Development",img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=900&q=75&auto=format&fit=crop",quote:"One skill practiced with intention every single day becomes an unfair advantage inside 90 days.",training:"Full body circuit: five compound exercises, four rounds, 45 seconds of work followed by 15 seconds rest. No rest between exercises within a round. Record total rounds completed.",mental:"Name the one skill that would most meaningfully alter your trajectory in the next 12 months. Not the most impressive-sounding one. The one that would change your actual outcomes. Commit to 45 minutes daily.",social:"Teach someone something you understand today. Explaining knowledge crystallises the gaps in it. A man who can teach what he knows is building it into permanent architecture.",bodyframe:"Record yourself reading aloud for five minutes. Is your voice clear and unhurried? Does it project from the chest with resonance, or does it remain trapped in the throat?",evening:"Block 45 minutes of skill practice into every remaining day of this course. Not when motivation is high. Every day, regardless."},
+  {day:14,level:2,title:"Level 2 Debrief",focus:"Honest Assessment",badge:"Review",img:"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=900&q=75&auto=format&fit=crop",quote:"Self-deception is the most expensive comfort a man can maintain.",training:"Return to the upper body push session from Day 9 using the identical exercises. Compare your load and rep count to the recorded benchmark. The difference is your Week 2 adaptation.",mental:"Write a complete Week 2 report with zero editorial adjustment in either direction. What you intended versus what actually happened. The gap between those two things is your precise data.",social:"Ask one person who knows you well: 'What is the most honest thing you could tell me about myself right now?' Do not defend. Do not explain. Only listen and write down what they say.",bodyframe:"Compare your posture photographs from Day 5 against today. Describe the observable difference in writing, not as progress, but as factual observation.",evening:"Answer without comfort: are you genuinely ready for Level 3, or do the fundamentals from Levels 1 and 2 require another week of honest work?"},
+
+  {day:15,level:3,title:"The Compound Effect",focus:"Habit Architecture",badge:"Systems",img:"https://images.unsplash.com/photo-1467721703506-0d7f7de3d2ee?w=900&q=75&auto=format&fit=crop",quote:"Discipline is not one heroic act of willpower. It is ten thousand small automatic choices made invisibly.",training:"Upper body pull with 5 to 10 percent more total load than your last pull session. Progressive overload applies from this point forward to every resistance session without exception.",mental:"Map your complete habit chain on paper as it currently runs. Mark every trigger precisely and every point where the chain breaks. Break points are where willpower runs dry. Systems seal those gaps.",social:"Quietly reduce your exposure to one person who consistently drains more energy than they return. No announcement, no confrontation. Simply redirect the hours.",bodyframe:"Add one specific grooming upgrade today: a new skincare step, a sharper edge to your beard or face, a product that refines what you already do. Details compound.",evening:"For tomorrow, write this structure: when X happens, I will immediately do Y. Habit stacking eliminates the daily decision fatigue that breaks most routines."},
+  {day:16,level:3,title:"The Presence Protocol",focus:"Commanding Attention",badge:"Presence",img:"https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=900&q=75&auto=format&fit=crop",quote:"Urgency is performance. Composure is power. The two are never mistaken for each other by people who matter.",training:"Legs combined with conditioning: a full squat session followed by 20 minutes of structured conditioning using whatever equipment is available, jump rope, assault bike, or loaded carries.",mental:"Operate 20 percent slower than your normal pace in every interaction today: speech, movement, and decisions. Watch how the quality of responses from people around you shifts.",social:"Introduce the controlled pause: after any question directed at you, wait a full two seconds before responding. It signals deliberate thought rather than reactive compliance.",bodyframe:"Train your diaphragmatic voice projection for five minutes: breathe into the belly, speak on the exhale, feel the resonance in the chest rather than the vibration in the throat.",evening:"Watch someone compelling with the sound muted for five minutes. Study body language only: how they occupy space, when they choose movement, and when they choose complete stillness."},
+  {day:17,level:3,title:"The Suit Mentality",focus:"Appearance as Armor",badge:"Presence",img:"https://images.unsplash.com/photo-1594938298603-c8148c4b2f0e?w=900&q=75&auto=format&fit=crop",quote:"How you dress is not vanity. It is a decision about how seriously you take what you are doing.",training:"Active recovery: a 45-minute walk on an entirely different route than your usual. Use unfamiliar surroundings to observe architectural detail, texture, and human movement. Train your eye.",mental:"Your appearance sends a communication into every room before you have spoken a single word. Treat the preparation of it with the same precision you give your most important work.",social:"Dress at your absolute sharpest today, not for any external audience, but to study how your own posture and register shift when you have respected your presentation.",bodyframe:"Schedule a haircut within the next 48 hours if one is overdue. Trim, edge, and groom to your sharpest current standard. No detail is too small when you are the product.",evening:"Audit your wardrobe with the same honesty you brought to your social circle. Remove anything that does not fit your frame correctly or does not belong to the man you are becoming."},
+  {day:18,level:3,title:"The Digital Fortress",focus:"Attention Architecture",badge:"Systems",img:"https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=900&q=75&auto=format&fit=crop",quote:"Your attention is the only truly non-renewable resource. Every notification is a bid for it.",training:"Full body strength session with complete documentation: every exercise, every set, every rep, and every load entered before you leave the training space.",mental:"Batch all phone interaction to three defined windows: 8am, 1pm, and 6pm. Between those windows, the device is on silent and face-down in a different room. Test this structure today.",social:"Hold one meeting or significant conversation today with your phone in a completely separate room. Note the difference in the quality of your listening and your presence.",bodyframe:"The phone posture is the anatomical opposite of the authority posture: chin down, spine curved, chest collapsed. Correct your position every single time you notice it today.",evening:"Calculate how many uninterrupted productive hours today produced compared to any average day. Multiply the difference by 365. That number is the annual cost of unchecked device access."},
+  {day:19,level:3,title:"The Confrontation Protocol",focus:"Courage Building",badge:"Mental",img:"https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=900&q=75&auto=format&fit=crop",quote:"Avoidance compounds at a rate higher than any interest. The longer you defer, the higher the cost.",training:"Upper body push with drop sets on the final working set of each muscle group. After your last set, reduce load by 25 percent and push to absolute technical failure.",mental:"Name the one thing you have been actively avoiding this week. Make contact with it today: the hard conversation, the unresolved decision, the message that needs sending, the confronting thought that keeps surfacing.",social:"Deliver direct, honest feedback to one person today. Not softened into vagueness and not sharpened into harshness. Precise and respectful in equal measure. This is the rarest social skill.",bodyframe:"Record a three-minute unscripted video of yourself speaking directly to a camera on any topic. Watch it twice: once for content, once purely for physical composure and the quality of your conviction.",evening:"Locate precisely what made today's discomfort uncomfortable. Not the general category of it, the exact mechanism. That specific location is where you have been comfortable for too long."},
+  {day:20,level:3,title:"The Reading Protocol",focus:"Intellectual Expansion",badge:"Development",img:"https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=900&q=75&auto=format&fit=crop",quote:"Every book you finish is an idea absorbed that most of the people around you will never access.",training:"Upper body pull with a focus today on perfecting form rather than increasing load. Every rep at full controlled range, every set with the same deliberate tempo from warm-up to final set.",mental:"30 pages of non-fiction before 9am. The window before the world places any demands on you is the most protected intellectual time you have. Begin treating it as sacred.",social:"Extract one idea from today's reading and introduce it naturally into a conversation this afternoon. Notice whether the quality of the conversation shifts when you bring a formed thought into it.",bodyframe:"Read standing at a counter or lectern for a minimum of 10 minutes today. Active posture during cognitive work trains the association between physical presence and intellectual engagement.",evening:"Write five sentences capturing what you genuinely took from today's reading, not a summary of events in the book, but your actual, honest intellectual response to what you encountered."},
+  {day:21,level:3,title:"Level 3 Debrief",focus:"Systems Audit",badge:"Review",img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75&auto=format&fit=crop",quote:"A system that only operates when you feel like using it is not a system. It is a preference.",training:"Active recovery with a full-body mobility sequence. Spend focused time on wherever restriction has developed over three weeks of consistent training and address it directly.",mental:"Overlay your current daily schedule against the Batman Protocol time blocks. Where is the gap between your intended structure and your actual one? That gap is the remaining design work.",social:"Ask one person who has known you for at least six months how they have noticed you change recently. Their answer tells you whether your internal shifts are becoming externally visible.",bodyframe:"Progress photographs: front, side, and back. Document with the date. Three weeks of deliberate physical training combined with consistent presence work should produce a visible difference.",evening:"Prepare for Level 4 with specificity: 'When I complete Day 30, I will have become...' Fill that sentence with enough precision that the current version of you finds it uncomfortable to read."},
+
+  {day:22,level:4,title:"The Integration Test",focus:"Autopilot Mastery",badge:"Mastery",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=75&auto=format&fit=crop",quote:"Discipline that still requires motivation has not yet become discipline. It is still effort with good intentions.",training:"Your most demanding conditioning session of the entire course. Every movement intentional, every set completed without mid-set negotiation with yourself.",mental:"Run the complete Batman Protocol today with zero external reminders, no accountability check-ins, and no motivational support of any kind. This is the test. The protocol either runs automatically or it shows you exactly where the automation is still missing.",social:"Lead one complete interaction today entirely on your terms: you set the pace, the depth, the topic, and the moment it concludes. Study the difference between leading an interaction and reacting to one.",bodyframe:"Pay deliberate attention to how you carry yourself when you are certain no one is observing you. That unrehearsed posture is your actual baseline and your genuine starting point for real mastery.",evening:"Catalogue which habits now run without a decision and which still require an act of will. The gap between those two lists is the precise remaining work."},
+  {day:23,level:4,title:"Bruce Wayne Mode",focus:"Social Excellence",badge:"Social",img:"https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=75&auto=format&fit=crop",quote:"Social excellence is not about being liked universally. It is about being completely undeniable.",training:"Upper body push at your maximum sustainable effort: heaviest loads, tightest form, highest intensity of the course. This session measures what 23 days of consistent training has built.",mental:"Study the specific mechanics of how presence works: how people feel in your company matters more than anything you say to them. Memory, full acknowledgment, and undivided attention are the actual tools.",social:"Enter one unfamiliar social environment today. Introduce yourself with your full name, a firm grip, and direct eye contact. Open the first conversation with a genuine question rather than a statement about yourself.",bodyframe:"Identify the strongest position in every room you enter today: the seat with the most sightlines, the standing position that commands the most space. Take it without hesitation or apology.",evening:"Three words. How would someone who met you today describe you to a colleague tomorrow? If those are not the three words you have decided to be associated with, the work is precise and specific."},
+  {day:24,level:4,title:"The Long Game",focus:"Vision Architecture",badge:"Legacy",img:"https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=900&q=75&auto=format&fit=crop",quote:"Small thinking is not modesty. It is a ceiling you constructed above your own head.",training:"Upper body pull: the final rep of the final working set should be a genuine physical grind. Not compromised form. Difficult. The kind that reveals whether you stop before your body does.",mental:"Write your three-year vision in present tense as if you are already inhabiting it. 'It is 2028 and I...' Make it specific enough that a stranger reading it would know exactly who you are and what you have built.",social:"Share your three-year vision with one person whose judgment you respect, not for validation, but for the discipline that comes from saying something aloud in front of someone who will remember you said it.",bodyframe:"Write one sentence describing the physical condition required to inhabit your three-year vision. Then train toward that body today, not the one you currently have.",evening:"Break your three-year vision backward into annual milestones, then six-month, then 90-day. Continue backward until you reach one action you can take tomorrow morning."},
+  {day:25,level:4,title:"The Inner Circle Audit",focus:"Relationship Architecture",badge:"Legacy",img:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=75&auto=format&fit=crop",quote:"Every man becomes his circle in time. Choose the ceiling you are willing to inherit.",training:"Full body circuit at the highest intensity of the entire course: compound movements only, timed rest intervals at 45 seconds maximum, no exceptions made mid-session.",mental:"The five people with the most regular access to your time are actively calibrating your reference point for what is normal. Name them. Is their version of normal a ceiling or a floor for where you are heading?",social:"Have a direct, honest conversation with one person in your circle about where you are each heading and whether those directions are genuinely aligned. No performance on either side.",bodyframe:"Practice commanding a room through stillness alone: no movement, no speech, no performance. Simply occupy your space with complete intention and observe what shifts in the people around you.",evening:"Decide who earns more of your future based not on shared history but on shared direction. Protect your access accordingly and without guilt."},
+  {day:26,level:4,title:"The Financial Frame",focus:"Wealth Architecture",badge:"Legacy",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=900&q=75&auto=format&fit=crop",quote:"Financial posture is as visible to attentive people as physical posture. Both communicate the same thing.",training:"Legs and core: full depth squats, hanging leg raises, farmer's carries, and loaded split squats. Functional strength that translates directly into how you move and feel under sustained load.",mental:"Review your complete financial position with the same unfiltered honesty you brought to your physical baseline on Day 5. Income, fixed expenses, savings rate, and trajectory. No story attached. Only numbers.",social:"Study one person who has built real wealth without public announcement. Identify the specific behavioral habits that produced their position, not the aesthetics of the outcome itself.",bodyframe:"Financial discipline and physical discipline share identical architecture: delayed gratification, long time horizons, and consistency over intensity. The man who builds both simultaneously compounds both.",evening:"Write your financial non-negotiables: a minimum savings rate, a ceiling on lifestyle inflation, and the specific number that represents financial independence for your particular life."},
+  {day:27,level:4,title:"The Silence Speaks",focus:"Reputation Building",badge:"Mastery",img:"https://images.unsplash.com/photo-1520811421272-66c8fc533f41?w=900&q=75&auto=format&fit=crop",quote:"Your reputation is constructed entirely in the rooms you have already left.",training:"Upper body push at full working effort. If any movement has not progressed since Day 1, examine recovery quality, sleep hours, and nutritional intake before questioning the programming.",mental:"Ask yourself with genuine honesty: what do people say about you when you leave the room? Not what you hope they say. What you know from watching how they behave when you return.",social:"Spend one hour in a social or professional setting where you speak measurably less than everyone else present. Observe what you learn about people when they are not performing for your attention.",bodyframe:"A man who has no compulsion to fill silence has already communicated something that most people spend their entire lives trying to express through constant talking.",evening:"Who are you when you are genuinely tired, when the task is completely inconvenient, and when no one on earth will ever know whether you completed it? That is your actual character."},
+  {day:28,level:4,title:"The Refinement Session",focus:"Polishing the Blueprint",badge:"Mastery",img:"https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=900&q=75&auto=format&fit=crop",quote:"Excellence is not a destination you arrive at. It is the permanent recalibration of your own standard.",training:"Active recovery with full intention: a long swim, a deliberate extended walk, or a thorough yoga session. Today is about absorption and physical preparation for the final two days.",mental:"Return to your Day 1 identity statement and read it in full. Rewrite it now as the person you have actually become across 28 days. The shift in language and specificity is your evidence.",social:"Identify one social behavior that still limits you with precision. Not a vague category of discomfort but the exact mechanism, where it appears, what triggers it, and how specifically it costs you.",bodyframe:"A complete grooming session from head to every detail: skin, hair, beard or face line, hands, shoes, and overall presentation. You are the product. The product needs to be fully attended to.",evening:"Which version of yourself would have been quietly embarrassed by the person who started Day 1? Write a letter from that version to the one who began this course."},
+  {day:29,level:4,title:"The Final Test",focus:"Complete Protocol Under Pressure",badge:"Mastery",img:"https://images.unsplash.com/photo-1546552768-6e8cb8bfc8b2?w=900&q=75&auto=format&fit=crop",quote:"The real test of discipline is never the easy day. It is the day when everything external pushes directly against you.",training:"Your most comprehensive training session of the entire 30 days: every major muscle group addressed, every set documented, every rep completed. Record the session. This is the physical measure of 29 days of applied consistency.",mental:"Execute the complete Batman Protocol inside a day with genuine external pressure: competing demands, unexpected distractions, and the sustained pull toward the comfortable shortcut. Hold every single time block.",social:"Lead one meeting, significant conversation, or high-stakes interaction as the most composed and most prepared person present. Not the loudest voice. The clearest.",bodyframe:"Walk into every space today as if you built it, not with performance, but with the quiet certainty of someone who has done the actual work and can no longer plausibly pretend otherwise.",evening:"Write ten specific things that 29 days of discipline has produced. Not intentions and not goals. Actual behavioral changes, character shifts, and measurable results. Make every one precise."},
+  {day:30,level:4,title:"The Dark Knight",focus:"The Beginning of Legacy",badge:"Mastery",img:"https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=900&q=75&auto=format&fit=crop",quote:"Batman does not retire from his purpose. He becomes it completely.",training:"Baseline retest: identical exercises to Day 5, identical conditions, identical honesty. Record every number. The gap between those two records is the physical proof of what one disciplined month produces.",mental:"Understand this clearly: you do not complete discipline in 30 days. You ignite it. The course was the ignition sequence. What follows is the sustained flight. Everything resets tomorrow from a permanently higher floor.",social:"Tell one person, in specific terms, who you have decided to be permanently. Not a goal you are working toward. A declaration of who you are now. Speak it in front of someone who will remember you said it.",bodyframe:"Compare Day 1 photographs to today. The physical shift is real and visible. What no photograph can show is the internal architecture that now runs silently beneath everything you do.",evening:"Write your personal manifesto: not a list of goals, not a catalogue of habits, but a declaration of the man you are now. Read it every single morning. Begin again tomorrow from higher ground, with no ceiling."}
+];
+
+const completed=new Set();
+let currentLevel=1;
+let selectedDay=null;
+let currentScale=1;
+
+function getResponsiveColumns(count){
+  const width=window.innerWidth||1024;
+  if(width<=420)return Math.min(count,2);
+  if(width<=640)return Math.min(count,3);
+  if(width<=900)return Math.min(count,4);
+  return Math.min(count,7);
+}
+
+
+function updateActiveButtons(groupSelector, activeValue){
+  document.querySelectorAll(groupSelector).forEach(btn=>{
+    const value=btn.getAttribute('data-value');
+    btn.classList.toggle('active', String(value)===String(activeValue));
+  });
+}
+
+function setScale(scale){
+  document.documentElement.style.setProperty('--app-scale', scale);
+  localStorage.setItem('batman-protocol-scale', scale);
+  document.querySelectorAll('[data-scale]').forEach(btn=>btn.classList.toggle('active', Number(btn.dataset.scale)===Number(scale)));
+  const status=document.getElementById('mobile-status');
+  if(status) status.textContent=`Page width ${Math.round(scale*100)}%`;
+}
+
+function setTextScale(scale){
+  document.documentElement.style.setProperty('--text-scale', scale);
+  localStorage.setItem('batman-protocol-text-scale', scale);
+  document.querySelectorAll('[data-text-scale]').forEach(btn=>btn.classList.toggle('active', Number(btn.dataset.textScale)===Number(scale)));
+  const status=document.getElementById('mobile-status');
+  if(status) status.textContent=`Text size ${Math.round(scale*100)}%`;
+}
+
+function loadPreferences(){
+  const savedScale=Number(localStorage.getItem('batman-protocol-scale')||1);
+  const savedTextScale=Number(localStorage.getItem('batman-protocol-text-scale')||1);
+  setScale(savedScale);
+  setTextScale(savedTextScale);
+}
+
+function buildFW(){
+  const el=document.getElementById('fw-body');
+  el.innerHTML=FW.map(f=>`<div class="fw-row"><span style="font-size:11px;color:#BA7517;font-weight:500;min-width:46px;padding-top:2px;">${f.time}</span><div><p style="margin:0 0 1px;font-size:13px;font-weight:500;">${f.name}</p><p style="margin:0;font-size:12px;color:var(--color-text-secondary);line-height:1.5;">${f.desc}</p></div></div>`).join('');
+}
+
+function renderTabs(){
+  const c=document.getElementById('level-tabs');
+  c.innerHTML='';
+  LEVELS.forEach(l=>{
+    const b=document.createElement('button');
+    b.className='tab'+(l.id===currentLevel?' on':'');
+    b.innerHTML=`<span style="font-size:10px;display:block;opacity:0.7;margin-bottom:2px;">${l.days}</span>${l.name}`;
+    b.onclick=()=>{currentLevel=l.id;selectedDay=null;render();};
+    c.appendChild(b);
+  });
+}
+
+function renderLevelInfo(){
+  const l=LEVELS.find(x=>x.id===currentLevel);
+  const lds=DAYS.filter(d=>d.level===currentLevel);
+  const done=lds.filter(d=>completed.has(d.day)).length;
+  document.getElementById('level-info').innerHTML=`
+    <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:180px;">
+        <p style="margin:0 0 3px;font-size:13px;font-weight:500;color:${l.color};">${l.theme}</p>
+        <p style="margin:0;font-size:13px;color:var(--color-text-secondary);line-height:1.5;">${l.desc}</p>
+      </div>
+      <div style="white-space:nowrap;text-align:right;">
+        <p style="margin:0 0 1px;font-size:10px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.1em;">Level progress</p>
+        <p style="margin:0;font-size:22px;font-weight:500;">${done}<span style="font-size:14px;color:var(--color-text-secondary);">/${lds.length}</span></p>
+      </div>
+    </div>`;
+}
+
+function renderGrid(){
+  const c=document.getElementById('day-grid');
+  const lds=DAYS.filter(d=>d.level===currentLevel);
+  c.style.gridTemplateColumns=`repeat(${getResponsiveColumns(lds.length)},minmax(0,1fr))`;
+  c.setAttribute('data-columns', getResponsiveColumns(lds.length));
+  c.innerHTML='';
+  lds.forEach(d=>{
+    const sel=selectedDay===d.day;
+    const done=completed.has(d.day);
+    const el=document.createElement('div');
+    el.className='dcard'+(sel?' sel':'');
+    el.innerHTML=`<p style="margin:0 0 3px;font-size:10px;color:var(--color-text-secondary);">Day</p>
+      <p style="margin:0;font-size:18px;font-weight:500;color:${done?'#3B6D11':'var(--color-text-primary)'};">${d.day}</p>
+      ${done?`<p style="margin:2px 0 0;font-size:9px;color:#3B6D11;font-weight:500;">done</p>`:``}
+      <p style="margin:4px 0 0;font-size:9px;color:var(--color-text-secondary);line-height:1.3;">${d.title.split(' ').slice(1,4).join(' ')}</p>`;
+    el.onclick=()=>{selectedDay=sel?null:d.day;renderGrid();renderDetail();};
+    c.appendChild(el);
+  });
+}
+
+function renderDetail(){
+  const c=document.getElementById('day-detail');
+  if(!selectedDay){c.style.display='none';return;}
+  const d=DAYS.find(x=>x.day===selectedDay);
+  const done=completed.has(d.day);
+  const l=LEVELS.find(x=>x.id===d.level);
+  c.style.display='block';
+  c.innerHTML=`
+    <div style="position:relative;height:210px;overflow:hidden;">
+      <img src="${d.img}" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.38);" loading="lazy">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;">
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+          <span class="pill" style="background:${l.color}33;color:${l.color};border:0.5px solid ${l.color}55;">Day ${d.day}: ${l.name}</span>
+          <span class="pill">${d.badge}</span>
+          <span class="pill">${d.focus}</span>
+        </div>
+        <h2 data-hero-title style="margin:0 0 6px;font-size:21px;font-weight:500;color:#fff;">${d.title}</h2>
+        <p data-hero-quote style="margin:0;font-size:12px;color:rgba(255,255,255,0.7);font-style:italic;">"${d.quote}"</p>
+      </div>
+    </div>
+    <div style="padding:1.25rem;">
+      <div data-detail-grid style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="pillar" style="border-color:#BA7517;">
+          <p style="margin:0 0 5px;font-size:10px;color:#BA7517;text-transform:uppercase;letter-spacing:.12em;font-weight:500;">Training</p>
+          <p style="margin:0;font-size:12px;color:var(--color-text-primary);line-height:1.65;">${d.training}</p>
+        </div>
+        <div class="pillar" style="border-color:#185FA5;">
+          <p style="margin:0 0 5px;font-size:10px;color:#185FA5;text-transform:uppercase;letter-spacing:.12em;font-weight:500;">Mental</p>
+          <p style="margin:0;font-size:12px;color:var(--color-text-primary);line-height:1.65;">${d.mental}</p>
+        </div>
+        <div class="pillar" style="border-color:#3B6D11;">
+          <p style="margin:0 0 5px;font-size:10px;color:#3B6D11;text-transform:uppercase;letter-spacing:.12em;font-weight:500;">Social</p>
+          <p style="margin:0;font-size:12px;color:var(--color-text-primary);line-height:1.65;">${d.social}</p>
+        </div>
+        <div class="pillar" style="border-color:#7F77DD;">
+          <p style="margin:0 0 5px;font-size:10px;color:#7F77DD;text-transform:uppercase;letter-spacing:.12em;font-weight:500;">Bodyframe</p>
+          <p style="margin:0;font-size:12px;color:var(--color-text-primary);line-height:1.65;">${d.bodyframe}</p>
+        </div>
+      </div>
+      <div class="pillar" style="border-left:3px solid #BA7517;">
+        <p style="margin:0 0 5px;font-size:10px;color:#BA7517;text-transform:uppercase;letter-spacing:.12em;font-weight:500;">Evening protocol</p>
+        <p style="margin:0;font-size:12px;color:var(--color-text-primary);line-height:1.65;">${d.evening}</p>
+      </div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <p style="margin:0;font-size:12px;color:var(--color-text-secondary);">${done?'This day is marked complete.':'Track your completion below.'}</p>
+        <button onclick="toggleDone(${d.day})" style="font-size:12px;padding:8px 18px;border-radius:var(--border-radius-md);border:0.5px solid ${done?'#3B6D11':'var(--color-border-secondary)'};background:${done?'#EAF3DE':'transparent'};color:${done?'#3B6D11':'var(--color-text-primary)'};cursor:pointer;">${done?'Completed':'Mark as complete'}</button>
+      </div>
+    </div>`;
+}
+
+function toggleDone(day){
+  if(completed.has(day))completed.delete(day);
+  else completed.add(day);
+  document.getElementById('prog-count').textContent=`${completed.size} / 30 days`;
+  renderGrid();renderLevelInfo();renderDetail();
+}
+
+function render(){renderTabs();renderLevelInfo();renderGrid();renderDetail();}
+
+window.addEventListener('resize', ()=>{
+  renderGrid();
+  if(selectedDay)renderDetail();
+});
+
+loadPreferences();
+buildFW();
+render();
+setScale(window.innerWidth<=768?1.1:1);
+</script>
