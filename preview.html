@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Batman Protocol</title>
+
+  <style>
+    :root{
+      --bg:#000000;
+      --bg-soft:#070707;
+      --panel:rgba(18,18,18,0.72);
+      --panel-2:rgba(255,255,255,0.04);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,0.68);
+      --border:rgba(255,255,255,0.10);
+      --gold:#d4af37;
+      --gold-soft:rgba(212,175,55,0.18);
+      --gold-strong:#f5d778;
+      --success:#6fcf97;
+      --shadow:0 18px 60px rgba(0,0,0,0.55);
+      --radius:18px;
+      --radius-sm:12px;
+      --maxw:1180px;
+    }
+
+    html, body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Arial, sans-serif;
+      min-height:100%;
+      scroll-behavior:smooth;
+    }
+
+    html.size-sm{font-size:14px;}
+    html.size-md{font-size:16px;}
+    html.size-lg{font-size:18px;}
+    html.size-xl{font-size:20px;}
+
+    *{box-sizing:border-box;}
+
+    body{
+      background:
+        radial-gradient(circle at top center, rgba(212,175,55,0.08), transparent 28%),
+        linear-gradient(180deg, #040404 0%, #000000 100%);
+    }
+
+    .page-wrap{
+      width:100%;
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      background:rgba(0,0,0,0.78);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:10px 16px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .control-group{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .label{
+      font-size:0.75rem;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:0.82rem;
+      cursor:pointer;
+      transition:transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(212,175,55,0.45);
+      box-shadow:0 8px 20px rgba(0,0,0,0.35);
+      background:rgba(255,255,255,0.05);
+    }
+
+    .btn.active{
+      background:linear-gradient(180deg, rgba(245,215,120,0.18), rgba(212,175,55,0.12));
+      color:#fff5cf;
+      border-color:rgba(212,175,55,0.55);
+      box-shadow:0 0 0 1px rgba(212,175,55,0.08) inset;
+    }
+
+    .shell{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:22px 16px 36px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      min-height:280px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      display:flex;
+      align-items:flex-end;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(212,175,55,0.14), transparent 22%),
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.78));
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      width:100%;
+      padding:28px 22px 22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin:0 0 10px;
+      font-size:0.72rem;
+      text-transform:uppercase;
+      letter-spacing:0.22em;
+      color:var(--gold-strong);
+    }
+
+    .hero h1{
+      margin:0 0 8px;
+      font-size:2rem;
+      line-height:1.05;
+      letter-spacing:-0.03em;
+      font-weight:700;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      color:rgba(255,255,255,0.76);
+      line-height:1.6;
+    }
+
+    .glass{
+      background:var(--panel);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:var(--shadow);
+    }
+
+    .summary{
+      margin-top:16px;
+      padding:16px;
+      border-radius:22px;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .summary-card{
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:14px;
+      min-height:88px;
+    }
+
+    .summary-card .k{
+      font-size:0.72rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      margin-bottom:8px;
+    }
+
+    .summary-card .v{
+      font-size:1.35rem;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .summary-card .s{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:0.88rem;
+    }
+
+    .progress-wrap{
+      margin-top:18px;
+      padding:18px;
+      border-radius:20px;
+    }
+
+    .progress-head{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .progress-title{
+      font-size:1rem;
+      font-weight:700;
+      margin:0;
+    }
+
+    .progress-meta{
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+
+    .progress-bar{
+      width:100%;
+      height:12px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:inset 0 1px 10px rgba(0,0,0,0.35);
+    }
+
+    .progress-fill{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg, #8f6d11 0%, #d4af37 45%, #f5d778 100%);
+      transition:width 0.35s ease;
+      box-shadow:0 0 24px rgba(212,175,55,0.28);
+    }
+
+    .section{
+      margin-top:22px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:1.15rem;
+      letter-spacing:-0.02em;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .days-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+      gap:12px;
+    }
+
+    .day-card{
+      position:relative;
+      padding:14px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      box-shadow:0 10px 30px rgba(0,0,0,0.32);
+      cursor:pointer;
+      transition:transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+      animation:fadeUp 0.45s ease both;
+    }
+
+    .day-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(212,175,55,0.34);
+      box-shadow:0 18px 36px rgba(0,0,0,0.46);
+    }
+
+    .day-card.active{
+      border-color:rgba(212,175,55,0.6);
+      background:linear-gradient(180deg, rgba(212,175,55,0.16), rgba(255,255,255,0.03));
+      box-shadow:0 16px 40px rgba(0,0,0,0.48), 0 0 0 1px rgba(212,175,55,0.10) inset;
+    }
+
+    .day-card.done{
+      border-color:rgba(111,207,151,0.35);
+    }
+
+    .day-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .day-number{
+      font-size:1.25rem;
+      font-weight:700;
+      color:#fff;
+      line-height:1;
+    }
+
+    .check{
+      width:24px;
+      height:24px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      display:grid;
+      place-items:center;
+      font-size:0.8rem;
+      background:rgba(255,255,255,0.03);
+      color:transparent;
+      transition:all 0.22s ease;
+    }
+
+    .day-card.done .check{
+      color:#08150e;
+      background:var(--success);
+      border-color:rgba(111,207,151,0.35);
+      box-shadow:0 0 18px rgba(111,207,151,0.22);
+    }
+
+    .day-title{
+      font-size:0.9rem;
+      line-height:1.35;
+      color:rgba(255,255,255,0.92);
+      min-height:2.4em;
+    }
+
+    .day-sub{
+      margin-top:8px;
+      font-size:0.76rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+
+    .detail{
+      margin-top:16px;
+      border-radius:24px;
+      overflow:hidden;
+      display:none;
+      animation:fadeIn 0.35s ease;
+    }
+
+    .detail.show{
+      display:block;
+    }
+
+    .detail-hero{
+      position:relative;
+      min-height:220px;
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .detail-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.78));
+    }
+
+    .detail-hero-inner{
+      position:relative;
+      z-index:1;
+      padding:20px;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:0.74rem;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .pill.gold{
+      color:#fff4cb;
+      border-color:rgba(212,175,55,0.40);
+      background:rgba(212,175,55,0.16);
+    }
+
+    .detail h3{
+      margin:0 0 8px;
+      font-size:1.55rem;
+      line-height:1.08;
+      letter-spacing:-0.03em;
+    }
+
+    .quote{
+      margin:0;
+      color:rgba(255,255,255,0.78);
+      font-style:italic;
+      line-height:1.55;
+    }
+
+    .detail-body{
+      padding:18px;
+      background:rgba(0,0,0,0.42);
+    }
+
+    .detail-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .pillar{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .pillar .t{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 10px;
+      font-size:0.82rem;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      color:var(--gold-strong);
+    }
+
+    .pillar p{
+      margin:0;
+      color:rgba(255,255,255,0.9);
+      line-height:1.7;
+      font-size:0.96rem;
+    }
+
+    .evening{
+      margin-top:14px;
+    }
+
+    .detail-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .done-msg{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .action-btn{
+      appearance:none;
+      border:1px solid rgba(212,175,55,0.32);
+      background:linear-gradient(180deg, rgba(212,175,55,0.18), rgba(212,175,55,0.10));
+      color:#fff6d6;
+      padding:11px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:0.92rem;
+      font-weight:700;
+      transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+
+    .action-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 24px rgba(0,0,0,0.34);
+      filter:brightness(1.06);
+    }
+
+    .action-btn.done{
+      border-color:rgba(111,207,151,0.34);
+      background:linear-gradient(180deg, rgba(111,207,151,0.16), rgba(111,207,151,0.08));
+      color:#dff7e8;
+    }
+
+    .footer-note{
+      margin-top:26px;
+      text-align:center;
+      color:var(--muted);
+      font-size:0.9rem;
+      line-height:1.6;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(10px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;}
+      to{opacity:1;}
+    }
+
+    @media (max-width: 900px){
+      .summary{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .detail-grid{
+        grid-template-columns:1fr;
+      }
+      .hero{
+        min-height:250px;
+      }
+      .hero h1{
+        font-size:1.75rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .topbar-inner{
+        padding:10px 12px;
+      }
+      .shell{
+        padding:18px 12px 30px;
+      }
+      .summary{
+        grid-template-columns:1fr;
+      }
+      .days-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .hero-content{
+        padding:22px 16px 18px;
+      }
+      .hero h1{
+        font-size:1.55rem;
+      }
+      .summary-card .v{
+        font-size:1.18rem;
+      }
+    }
+
+    @media (max-width: 420px){
+      .days-grid{
+        grid-template-columns:1fr 1fr;
+      }
+      .btn{
+        padding:7px 10px;
+        font-size:0.78rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="control-group">
+          <span class="label">Text size</span>
+          <button class="btn" data-size="size-sm" onclick="setTextSize('size-sm')">A-</button>
+          <button class="btn" data-size="size-md" onclick="setTextSize('size-md')">A</button>
+          <button class="btn" data-size="size-lg" onclick="setTextSize('size-lg')">A+</button>
+          <button class="btn" data-size="size-xl" onclick="setTextSize('size-xl')">A++</button>
+        </div>
+
+        <div class="control-group">
+          <button class="btn" onclick="resetProgress()">Reset progress</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">30-Day Discipline Mastery Blueprint</p>
+          <h1>The Batman Protocol</h1>
+          <p>
+            Quiet power, structure, presence, and daily execution.
+            Built with a darker luxury aesthetic, smoother motion, and saved progress that follows you.
+          </p>
+        </div>
+      </section>
+
+      <section class="summary glass">
+        <div class="summary-card">
+          <div class="k">Duration</div>
+          <div class="v">30 Days</div>
+          <div class="s">One full protocol cycle</div>
+        </div>
+        <div class="summary-card">
+          <div class="k">Style</div>
+          <div class="v">Quiet Power</div>
+          <div class="s">Bruce Wayne inspired tone</div>
+        </div>
+        <div class="summary-card">
+          <div class="k">Progress</div>
+          <div class="v" id="progress-count">0 / 30</div>
+          <div class="s">Saved on your device</div>
+        </div>
+        <div class="summary-card">
+          <div class="k">Completion</div>
+          <div class="v" id="progress-percent">0%</div>
+          <div class="s">Consistency compounds</div>
+        </div>
+      </section>
+
+      <section class="progress-wrap glass">
+        <div class="progress-head">
+          <h2 class="progress-title">Protocol Progress</h2>
+          <div class="progress-meta" id="progress-meta">No days completed yet</div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Daily Protocol</h2>
+          <div class="muted">Tap a day to open it, mark it complete, and save your progress</div>
+        </div>
+
+        <div class="days-grid" id="days-grid"></div>
+
+        <div class="detail glass" id="detail"></div>
+      </section>
+
+      <p class="footer-note">
+        The protocol progress and text size are stored in your browser, so GitHub Pages can remember them on the same device.
+      </p>
+    </main>
+  </div>
+
+  <script>
+    const DAYS = [
+      {
+        day: 1,
+        title: "The Architect's Decision",
+        badge: "Foundation",
+        focus: "Identity",
+        img: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=1200&q=80&auto=format&fit=crop",
+        quote: "You are not negotiating with drift anymore. You are choosing who you become.",
+        training: "Set your baseline. Record your current push-ups, squats, plank time, and a fast one mile effort. No excuses, just numbers.",
+        mental: "Write 10 identity statements in present tense. Not goals, commitments. Build the inner script.",
+        social: "Make one direct, calm observation in conversation today. Clear, grounded, honest.",
+        bodyframe: "Study your posture in the mirror for five uninterrupted minutes. Note where you shrink.",
+        evening: "Write a short third-person description of the man you are becoming."
+      },
+      {
+        day: 2,
+        title: "The Cave Setup",
+        badge: "Foundation",
+        focus: "Environment",
+        img: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&q=80&auto=format&fit=crop",
+        quote: "Your environment is either sharpening you or draining you.",
+        training: "20-minute walk without music or podcasts. Observe pace, posture, and attention.",
+        mental: "Clear visible clutter from your room or desk. Remove friction from focus.",
+        social: "Audit how much filler talk you use. Reduce it.",
+        bodyframe: "Practice a calm neutral expression. Relax the forehead, level the eyes, settle the jaw.",
+        evening: "Prepare tomorrow's space before sleep."
+      },
+      {
+        day: 3,
+        title: "The Non-Negotiables",
+        badge: "Foundation",
+        focus: "Laws",
+        img: "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?w=1200&q=80&auto=format&fit=crop",
+        quote: "A law is what remains when mood disappears.",
+        training: "Three rounds: 20 push-ups, 20 squats, 60-second plank.",
+        mental: "Write your three non-negotiable laws for this phase of your life.",
+        social: "Say no once today without overexplaining.",
+        bodyframe: "Walk slowly for 200 steps with deliberate posture.",
+        evening: "Read your laws out loud and listen to your tone."
+      },
+      {
+        day: 4,
+        title: "The Silence Protocol",
+        badge: "Foundation",
+        focus: "Fortitude",
+        img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&auto=format&fit=crop",
+        quote: "Silence reveals what noise was hiding.",
+        training: "30 minutes of movement with no audio.",
+        mental: "Spend one hour in unmanaged silence, no device, no background entertainment.",
+        social: "Ask one question in every interaction and fully listen.",
+        bodyframe: "Eat one full meal in upright silence, no phone.",
+        evening: "Journal what the silence exposed."
+      },
+      {
+        day: 5,
+        title: "The Physical Baseline",
+        badge: "Assessment",
+        focus: "Inventory",
+        img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+        quote: "Measured truth is more useful than vague confidence.",
+        training: "Retest push-ups, squats, rows or pull-ups, and one mile pace.",
+        mental: "Treat the data neutrally.",
+        social: "Give one precise compliment.",
+        bodyframe: "Film 10 bodyweight squats and study form.",
+        evening: "Store the numbers somewhere permanent."
+      },
+      {
+        day: 6,
+        title: "The Social Audit",
+        badge: "Assessment",
+        focus: "Circle",
+        img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80&auto=format&fit=crop",
+        quote: "Your circle calibrates your standard.",
+        training: "45-minute compound session, press, pull, hinge.",
+        mental: "List the people you saw this week. Mark sharpening or dulling.",
+        social: "Take one conversation deeper than surface level.",
+        bodyframe: "Refine your handshake and eye contact.",
+        evening: "Quietly decide who gets more access to your time."
+      },
+      {
+        day: 7,
+        title: "The First Review",
+        badge: "Review",
+        focus: "Accountability",
+        img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80&auto=format&fit=crop",
+        quote: "Self-accountability changes everything.",
+        training: "Active recovery, walk and stretch.",
+        mental: "Score your week in sleep, focus, training, presence, and social depth.",
+        social: "Contact someone you have been avoiding.",
+        bodyframe: "Wear your sharpest fitted outfit and observe your posture.",
+        evening: "Write what broke, what worked, and what changes next."
+      },
+      {
+        day: 8,
+        title: "The Mind Diet",
+        badge: "Mental",
+        focus: "Input Control",
+        img: "https://images.unsplash.com/photo-1512485800893-b08ec1ea59b1?w=1200&q=80&auto=format&fit=crop",
+        quote: "What you consume shapes how you move.",
+        training: "30 minutes zone 2 cardio.",
+        mental: "Remove low-quality digital inputs.",
+        social: "Replace one scrolling session with a real conversation.",
+        bodyframe: "Correct your posture every time you pick up the phone.",
+        evening: "List what you consumed today and grade it."
+      },
+      {
+        day: 9,
+        title: "The Training Blueprint",
+        badge: "Training",
+        focus: "Physical Architecture",
+        img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80&auto=format&fit=crop",
+        quote: "A structured body comes from a structured plan.",
+        training: "Design your weekly split and complete day one.",
+        mental: "Study progressive overload and apply it.",
+        social: "Tell one person your training plan.",
+        bodyframe: "Practice controlled breath during training.",
+        evening: "Write your next four weeks of training."
+      },
+      {
+        day: 10,
+        title: "The Art of Stillness",
+        badge: "Mental",
+        focus: "Presence",
+        img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=80&auto=format&fit=crop",
+        quote: "Stillness is strength under control.",
+        training: "Upper body pull with controlled tempo.",
+        mental: "10 minutes of box breathing.",
+        social: "Let people finish their full sentence.",
+        bodyframe: "Record two minutes of yourself speaking and review it.",
+        evening: "Write what stillness stopped you from rushing past."
+      },
+      {
+        day: 11,
+        title: "The Bodyframe Protocol",
+        badge: "Presence",
+        focus: "Physical Presence",
+        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80&auto=format&fit=crop",
+        quote: "Your frame already says something. Make sure it says the right thing.",
+        training: "Leg day, squats, hinges, lunges, calves.",
+        mental: "Study how genuinely composed tall men carry themselves.",
+        social: "Enter every room like you belong there.",
+        bodyframe: "Practice the four anchors, chin level, shoulders back, chest lifted, movement unhurried.",
+        evening: "Film your walk and assess whether it communicates arrival."
+      },
+      {
+        day: 12,
+        title: "The Social Calibration",
+        badge: "Social",
+        focus: "Conversation",
+        img: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=1200&q=80&auto=format&fit=crop",
+        quote: "Magnetism is considered attention applied well.",
+        training: "Mobility or yoga session.",
+        mental: "Identify what makes a compelling conversationalist effective.",
+        social: "Start three conversations with direct observations.",
+        bodyframe: "Practice steady eye contact without staring.",
+        evening: "Review where you withdrew and where you led."
+      },
+      {
+        day: 13,
+        title: "The Skill Stack",
+        badge: "Development",
+        focus: "Compounding",
+        img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80&auto=format&fit=crop",
+        quote: "One skill practiced daily becomes leverage.",
+        training: "Full body circuit, timed rounds.",
+        mental: "Choose one high-value skill and commit to it daily.",
+        social: "Teach something you understand.",
+        bodyframe: "Read aloud for five minutes and listen to your voice projection.",
+        evening: "Block skill practice into the rest of the month."
+      },
+      {
+        day: 14,
+        title: "Level 2 Debrief",
+        badge: "Review",
+        focus: "Honest Assessment",
+        img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80&auto=format&fit=crop",
+        quote: "Accurate self-assessment is an advantage.",
+        training: "Repeat the upper body push benchmark and compare.",
+        mental: "Write what happened, not what you hoped happened.",
+        social: "Ask for one honest piece of feedback.",
+        bodyframe: "Compare old posture photos to now.",
+        evening: "Decide if your fundamentals are truly stronger."
+      },
+      {
+        day: 15,
+        title: "The Compound Effect",
+        badge: "Systems",
+        focus: "Habit Architecture",
+        img: "https://images.unsplash.com/photo-1467721703506-0d7f7de3d2ee?w=1200&q=80&auto=format&fit=crop",
+        quote: "Small structured wins change identity.",
+        training: "Increase pull day loading slightly.",
+        mental: "Map your habit chain and weak points.",
+        social: "Reduce exposure to one draining person.",
+        bodyframe: "Upgrade one grooming detail.",
+        evening: "Write tomorrow's habit stack."
+      },
+      {
+        day: 16,
+        title: "The Presence Protocol",
+        badge: "Presence",
+        focus: "Command",
+        img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=1200&q=80&auto=format&fit=crop",
+        quote: "Urgency is noisy. Composure is power.",
+        training: "Legs plus conditioning.",
+        mental: "Move 20 percent slower in every interaction today.",
+        social: "Use the controlled pause before responding.",
+        bodyframe: "Train diaphragmatic voice projection.",
+        evening: "Study compelling body language without sound."
+      },
+      {
+        day: 17,
+        title: "The Suit Mentality",
+        badge: "Presence",
+        focus: "Appearance",
+        img: "https://images.unsplash.com/photo-1594938298603-c8148c4b2f0e?w=1200&q=80&auto=format&fit=crop",
+        quote: "Presentation is not vanity when it reflects standards.",
+        training: "Active recovery walk on a different route.",
+        mental: "Treat presentation like part of performance.",
+        social: "Dress at your sharpest and observe the shift.",
+        bodyframe: "Refine haircut, beard, skin, and details.",
+        evening: "Audit your wardrobe honestly."
+      },
+      {
+        day: 18,
+        title: "The Digital Fortress",
+        badge: "Systems",
+        focus: "Attention",
+        img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80&auto=format&fit=crop",
+        quote: "Attention is your rarest asset.",
+        training: "Full body strength with complete logging.",
+        mental: "Batch your phone use into defined windows.",
+        social: "Hold one meaningful conversation with your phone in another room.",
+        bodyframe: "Correct phone posture all day.",
+        evening: "Calculate the hidden cost of digital drift."
+      },
+      {
+        day: 19,
+        title: "The Confrontation Protocol",
+        badge: "Mental",
+        focus: "Courage",
+        img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&q=80&auto=format&fit=crop",
+        quote: "Avoidance is expensive.",
+        training: "Upper body push with difficult final sets.",
+        mental: "Face one thing you have been avoiding.",
+        social: "Give direct but respectful feedback once today.",
+        bodyframe: "Record a three-minute unscripted video.",
+        evening: "Identify what made the discomfort uncomfortable."
+      },
+      {
+        day: 20,
+        title: "The Reading Protocol",
+        badge: "Development",
+        focus: "Intellectual Expansion",
+        img: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&q=80&auto=format&fit=crop",
+        quote: "Reading expands your internal terrain.",
+        training: "Upper body pull with perfect form focus.",
+        mental: "30 pages of non-fiction before 9am.",
+        social: "Bring one idea from reading into a conversation.",
+        bodyframe: "Read standing for 10 minutes.",
+        evening: "Write five takeaways from the reading."
+      },
+      {
+        day: 21,
+        title: "Level 3 Debrief",
+        badge: "Review",
+        focus: "Systems Audit",
+        img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
+        quote: "A system that depends on mood is not a system.",
+        training: "Recovery and mobility.",
+        mental: "Overlay your actual day against your intended structure.",
+        social: "Ask someone how they have noticed you change recently.",
+        bodyframe: "Take progress photos.",
+        evening: "Write what Level 4 requires from you."
+      },
+      {
+        day: 22,
+        title: "The Integration Test",
+        badge: "Mastery",
+        focus: "Autopilot",
+        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
+        quote: "Real discipline starts when support disappears.",
+        training: "Your toughest conditioning session yet.",
+        mental: "Run the protocol with zero external reminders.",
+        social: "Lead one interaction fully on your terms.",
+        bodyframe: "Observe how you carry yourself when no one is watching.",
+        evening: "Separate what is automatic from what still needs will."
+      },
+      {
+        day: 23,
+        title: "Bruce Wayne Mode",
+        badge: "Social",
+        focus: "Excellence",
+        img: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=80&auto=format&fit=crop",
+        quote: "Undeniable presence is quiet and exact.",
+        training: "High-intensity upper body push.",
+        mental: "Study how memory, presence, and attention shape social impact.",
+        social: "Enter one unfamiliar setting and initiate a grounded conversation.",
+        bodyframe: "Take the strongest position in the room without apology.",
+        evening: "Choose the three words you want to be remembered by."
+      },
+      {
+        day: 24,
+        title: "The Long Game",
+        badge: "Legacy",
+        focus: "Vision",
+        img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80&auto=format&fit=crop",
+        quote: "A wider vision changes daily behavior.",
+        training: "Upper body pull with difficult final effort.",
+        mental: "Write your three-year vision in present tense.",
+        social: "Say your vision out loud to someone you respect.",
+        bodyframe: "Define the body required for your future life.",
+        evening: "Reverse engineer the next 90 days."
+      },
+      {
+        day: 25,
+        title: "The Inner Circle Audit",
+        badge: "Legacy",
+        focus: "Relationships",
+        img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop",
+        quote: "Shared direction matters more than shared history.",
+        training: "High-intensity full body circuit.",
+        mental: "Name your five closest influences and assess their trajectory.",
+        social: "Have one honest alignment conversation.",
+        bodyframe: "Practice commanding a room through stillness alone.",
+        evening: "Decide who earns more of your future access."
+      },
+      {
+        day: 26,
+        title: "The Financial Frame",
+        badge: "Legacy",
+        focus: "Wealth",
+        img: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=80&auto=format&fit=crop",
+        quote: "Financial posture reflects long-term discipline.",
+        training: "Legs and core, carries, split squats, raises.",
+        mental: "Review your numbers with total honesty.",
+        social: "Study one quietly effective person with real financial discipline.",
+        bodyframe: "Connect physical and financial discipline through delayed gratification.",
+        evening: "Write your financial non-negotiables."
+      },
+      {
+        day: 27,
+        title: "The Silence Speaks",
+        badge: "Mastery",
+        focus: "Reputation",
+        img: "https://images.unsplash.com/photo-1520811421272-66c8fc533f41?w=1200&q=80&auto=format&fit=crop",
+        quote: "Reputation is built in rooms you have left.",
+        training: "Upper body push at full effort.",
+        mental: "Ask what people likely say about you after you leave.",
+        social: "Speak much less in one setting and observe more.",
+        bodyframe: "Use silence without discomfort.",
+        evening: "Write who you are when nobody will ever know."
+      },
+      {
+        day: 28,
+        title: "The Refinement Session",
+        badge: "Mastery",
+        focus: "Polish",
+        img: "https://images.unsplash.com/photo-1585914924626-15adac1e6402?w=1200&q=80&auto=format&fit=crop",
+        quote: "Excellence is standards repeatedly refined.",
+        training: "Intentional active recovery.",
+        mental: "Rewrite your Day 1 identity statement from your current perspective.",
+        social: "Define one exact social limitation that still remains.",
+        bodyframe: "Run a full grooming session with precision.",
+        evening: "Write a letter from your stronger self to your former self."
+      },
+      {
+        day: 29,
+        title: "The Final Test",
+        badge: "Mastery",
+        focus: "Pressure",
+        img: "https://images.unsplash.com/photo-1546552768-6e8cb8bfc8b2?w=1200&q=80&auto=format&fit=crop",
+        quote: "Your standards mean most on the inconvenient day.",
+        training: "Full body comprehensive training session.",
+        mental: "Hold structure under real distraction and pressure.",
+        social: "Lead one higher-stakes interaction as the most composed person present.",
+        bodyframe: "Walk into every room with calm certainty.",
+        evening: "Write ten precise changes this month has produced."
+      },
+      {
+        day: 30,
+        title: "The Dark Knight",
+        badge: "Mastery",
+        focus: "Legacy",
+        img: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&q=80&auto=format&fit=crop",
+        quote: "The 30 days were the ignition. The standard remains.",
+        training: "Retest your original baseline under the same conditions.",
+        mental: "See this as the beginning of the next cycle, not the end.",
+        social: "Tell one person who you are now, specifically.",
+        bodyframe: "Compare Day 1 to Day 30 and observe the difference.",
+        evening: "Write your manifesto and begin again from a higher floor."
+      }
+    ];
+
+    const STORAGE_KEYS = {
+      done: 'batman_protocol_done_v2',
+      size: 'batman_protocol_size_v2',
+      selected: 'batman_protocol_selected_v2'
+    };
+
+    let completed = new Set();
+    let selectedDay = 1;
+
+    function loadState(){
+      try{
+        const savedDone = JSON.parse(localStorage.getItem(STORAGE_KEYS.done) || '[]');
+        completed = new Set(savedDone);
+      }catch(e){
+        completed = new Set();
+      }
+
+      const savedSize = localStorage.getItem(STORAGE_KEYS.size) || 'size-lg';
+      setTextSize(savedSize, false);
+
+      const savedSelected = Number(localStorage.getItem(STORAGE_KEYS.selected) || '1');
+      selectedDay = DAYS.some(d => d.day === savedSelected) ? savedSelected : 1;
+    }
+
+    function saveDone(){
+      localStorage.setItem(STORAGE_KEYS.done, JSON.stringify([...completed]));
+    }
+
+    function setTextSize(sizeClass, save=true){
+      document.documentElement.classList.remove('size-sm','size-md','size-lg','size-xl');
+      document.documentElement.classList.add(sizeClass);
+
+      document.querySelectorAll('[data-size]').forEach(btn=>{
+        btn.classList.toggle('active', btn.dataset.size === sizeClass);
+      });
+
+      if(save){
+        localStorage.setItem(STORAGE_KEYS.size, sizeClass);
+      }
+    }
+
+    function updateProgress(){
+      const count = completed.size;
+      const percent = Math.round((count / DAYS.length) * 100);
+
+      document.getElementById('progress-count').textContent = `${count} / ${DAYS.length}`;
+      document.getElementById('progress-percent').textContent = `${percent}%`;
+      document.getElementById('progress-fill').style.width = `${percent}%`;
+
+      let meta = 'No days completed yet';
+      if(count > 0 && count < DAYS.length){
+        meta = `${count} day${count === 1 ? '' : 's'} completed, ${DAYS.length - count} remaining`;
+      }
+      if(count === DAYS.length){
+        meta = 'Protocol complete, every day marked';
+      }
+      document.getElementById('progress-meta').textContent = meta;
+    }
+
+    function renderGrid(){
+      const grid = document.getElementById('days-grid');
+      grid.innerHTML = '';
+
+      DAYS.forEach((d, i) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = `day-card ${selectedDay === d.day ? 'active' : ''} ${completed.has(d.day) ? 'done' : ''}`;
+        card.style.animationDelay = `${Math.min(i * 0.015, 0.25)}s`;
+
+        card.innerHTML = `
+          <div class="day-top">
+            <div class="day-number">${d.day}</div>
+            <div class="check">${completed.has(d.day) ? '✓' : ''}</div>
+          </div>
+          <div class="day-title">${d.title}</div>
+          <div class="day-sub">${d.badge} · ${d.focus}</div>
+        `;
+
+        card.addEventListener('click', () => {
+          selectedDay = d.day;
+          localStorage.setItem(STORAGE_KEYS.selected, String(selectedDay));
+          renderGrid();
+          renderDetail();
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleDone(day){
+      if(completed.has(day)){
+        completed.delete(day);
+      }else{
+        completed.add(day);
+      }
+      saveDone();
+      updateProgress();
+      renderGrid();
+      renderDetail();
+    }
+
+    function renderDetail(){
+      const detail = document.getElementById('detail');
+      const d = DAYS.find(x => x.day === selectedDay);
+      if(!d){
+        detail.classList.remove('show');
+        detail.innerHTML = '';
+        return;
+      }
+
+      const isDone = completed.has(d.day);
+
+      detail.innerHTML = `
+        <div class="detail-hero" style="background-image:url('${d.img}')">
+          <div class="detail-hero-inner">
+            <div class="pill-row">
+              <span class="pill gold">Day ${d.day}</span>
+              <span class="pill">${d.badge}</span>
+              <span class="pill">${d.focus}</span>
+            </div>
+            <h3>${d.title}</h3>
+            <p class="quote">"${d.quote}"</p>
+          </div>
+        </div>
+
+        <div class="detail-body">
+          <div class="detail-grid">
+            <div class="pillar">
+              <div class="t">Training</div>
+              <p>${d.training}</p>
+            </div>
+            <div class="pillar">
+              <div class="t">Mental</div>
+              <p>${d.mental}</p>
+            </div>
+            <div class="pillar">
+              <div class="t">Social</div>
+              <p>${d.social}</p>
+            </div>
+            <div class="pillar">
+              <div class="t">Bodyframe</div>
+              <p>${d.bodyframe}</p>
+            </div>
+          </div>
+
+          <div class="pillar evening">
+            <div class="t">Evening Protocol</div>
+            <p>${d.evening}</p>
+          </div>
+
+          <div class="detail-actions">
+            <div class="done-msg">
+              ${isDone ? 'This day is currently marked complete.' : 'Mark this day complete when finished.'}
+            </div>
+            <button type="button" class="action-btn ${isDone ? 'done' : ''}" onclick="toggleDone(${d.day})">
+              ${isDone ? 'Completed ✓' : 'Mark as complete'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      detail.classList.add('show');
+    }
+
+    function resetProgress(){
+      const ok = confirm('Reset all saved progress for this device?');
+      if(!ok) return;
+
+      completed = new Set();
+      saveDone();
+      updateProgress();
+      renderGrid();
+      renderDetail();
+    }
+
+    loadState();
+    updateProgress();
+    renderGrid();
+    renderDetail();
+  </script>
+</body>
+</html>
